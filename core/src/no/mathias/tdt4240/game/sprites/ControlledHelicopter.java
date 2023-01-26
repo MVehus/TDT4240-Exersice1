@@ -8,9 +8,11 @@ import no.mathias.tdt4240.game.TDT4240Game;
 public class ControlledHelicopter extends Helicopter{
 
     Boolean orientedRight = true;
-    public ControlledHelicopter(int x, int y) {
-        super(x, y);
+
+    public ControlledHelicopter(int x, int y, int speedX, int ySpeed) {
+        super(x, y, speedX, ySpeed);
     }
+
 
     public void update(float dt){
         if (Gdx.input.isKeyPressed(Input.Keys.UP) && position.y < TDT4240Game.HEIGHT - helicopter.getHeight())

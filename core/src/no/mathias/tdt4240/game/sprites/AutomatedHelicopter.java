@@ -13,11 +13,22 @@ public class AutomatedHelicopter extends Helicopter{
 
     protected int xDirection;
     protected int yDirection;
-    public AutomatedHelicopter(int x, int y) {
-        super(x, y);
-        xDirection = 1;
-        yDirection = 1;
+
+    public AutomatedHelicopter(int x, int y, int speedX, int ySpeed, boolean right, boolean up) {
+        super(x, y, speedX, ySpeed);
+        if (right)
+            xDirection = 1;
+        else {
+            xDirection = -1;
+            flipSprites();
+        }
+
+        if (up)
+            yDirection = 1;
+        else
+            yDirection = -1;
     }
+
 
     public void update(float dt){
 
@@ -37,6 +48,11 @@ public class AutomatedHelicopter extends Helicopter{
         textureNumber++;
 
         coordinates = String.format("(x: %.0f, y: %.0f)", position.x, position.y);
+    }
 
+    public void Bounce(){
+        xDirection *= -1;
+        yDirection *= -1;
+        flipSprites();
     }
 }

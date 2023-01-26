@@ -18,11 +18,11 @@ public class Helicopter {
     protected int yStep;
     protected String coordinates;
 
-    public Helicopter(int x, int y){
+    public Helicopter(int x, int y, int speedX, int ySpeed){
         position = new Vector3(x, y, 0);
         textureNumber = 0;
-        xStep = 4;
-        yStep = 2;
+        xStep = speedX;
+        yStep = ySpeed;
         initializeTextures();
         helicopter = sprites.get(0);
         coordinates = "";

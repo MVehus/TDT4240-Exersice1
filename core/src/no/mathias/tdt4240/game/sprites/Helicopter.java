@@ -10,41 +10,22 @@ import java.util.List;
 import no.mathias.tdt4240.game.TDT4240Game;
 
 public class Helicopter {
-    private Vector3 position;
-    //private Vector3 velocity;
-    private Sprite helicopter;
-    private int textureNumber;
+    protected final Vector3 position;
+    protected Sprite helicopter;
+    protected int textureNumber;
     List<Sprite> sprites;
-    private int xDirection;
-
-    private int yDirection;
+    protected int xStep;
+    protected int yStep;
+    protected String coordinates;
 
     public Helicopter(int x, int y){
         position = new Vector3(x, y, 0);
-        //velocity = new Vector3(0, 0,0);
         textureNumber = 0;
-        xDirection = 1;
-        yDirection = 1;
+        xStep = 4;
+        yStep = 2;
         initializeTextures();
         helicopter = sprites.get(0);
-    }
-
-    public void update(float dt){
-
-        if (position.x > TDT4240Game.WIDTH - helicopter.getWidth() || position.x < 0){
-            xDirection *= -1;
-            flipSprites();
-        }
-
-        if (position.y > TDT4240Game.HEIGHT - helicopter.getHeight() || position.y < 0)
-            yDirection *= -1;
-
-        position.add(2 * xDirection, 1*yDirection,0);
-
-        if (textureNumber > 7)
-            textureNumber = 0;
-        helicopter = sprites.get(textureNumber);
-        textureNumber++;
+        coordinates = "";
     }
 
     public Vector3 getPosition() {
@@ -55,6 +36,10 @@ public class Helicopter {
         return helicopter;
     }
 
+    public String getCoordinates() {
+        return coordinates;
+    }
+
     private void initializeTextures(){
         sprites = new ArrayList<>();
         for (int txtNr=1; txtNr<9; txtNr++){
@@ -62,11 +47,9 @@ public class Helicopter {
         }
     }
 
-    private void flipSprites(){
+    protected void flipSprites(){
         for (Sprite sprite : sprites){
             sprite.flip(true, false);
         }
     }
-
-
 }

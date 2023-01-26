@@ -9,8 +9,8 @@ import no.mathias.tdt4240.game.states.GameStateManager;
 import no.mathias.tdt4240.game.states.MenuState;
 
 public class TDT4240Game extends ApplicationAdapter {
-	public static final int WIDTH = 750;
-	public static final int HEIGHT = 900;
+	public static final int WIDTH = 550;
+	public static final int HEIGHT = 700;
 	public static final String TITLE = "Helicopter";
 
 	private GameStateManager gameStateManager;

@@ -2,10 +2,7 @@ package no.mathias.tdt4240.game.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +15,16 @@ public class Helicopter {
     private Sprite helicopter;
     private int textureNumber;
     List<Sprite> sprites;
-    private int direction;
+    private int xDirection;
+
+    private int yDirection;
 
     public Helicopter(int x, int y){
         position = new Vector3(x, y, 0);
         //velocity = new Vector3(0, 0,0);
         textureNumber = 0;
-        direction = 1;
+        xDirection = 1;
+        yDirection = 1;
         initializeTextures();
         helicopter = sprites.get(0);
     }
@@ -32,11 +32,14 @@ public class Helicopter {
     public void update(float dt){
 
         if (position.x > TDT4240Game.WIDTH - helicopter.getWidth() || position.x < 0){
-            direction *= -1;
+            xDirection *= -1;
             flipSprites();
         }
 
-        position.add(2 * direction, 0,0);
+        if (position.y > TDT4240Game.HEIGHT - helicopter.getHeight() || position.y < 0)
+            yDirection *= -1;
+
+        position.add(2 * xDirection, 1*yDirection,0);
 
         if (textureNumber > 7)
             textureNumber = 0;
